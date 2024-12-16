@@ -35,9 +35,15 @@ function App() {
 
             <main>
                 <ul>
-                    {movies.map((movie) => (
-                        <li key={movie}>{movie}</li>
-                    ))}
+                    {Array.isArray(movies) &&
+                        movies.map((movie) => (
+                            <li key={movie.id}>
+                                Titolo: {movie.title}; Titolo Originale:{" "}
+                                {movie.original_title}; Lingua:{" "}
+                                {movie.original_language}; Voto:{" "}
+                                {movie.vote_average}
+                            </li>
+                        ))}
                 </ul>
             </main>
         </>

@@ -25,9 +25,16 @@ export const MoviesContextProvider = ({ children }) => {
             },
         };
 
+        //Richiesta API, per cercare i film
         fetch(`${apiUrl}/movie?query=${search}`, options)
             .then((res) => res.json())
-            .then((json) => console.log(json))
+            .then((data) => {
+                if (data.results.length > 0) {
+                    console.log(data.results);
+
+                    setMovies(data.results);
+                }
+            })
             .catch((err) => console.error(err));
     }, [search]);
 
