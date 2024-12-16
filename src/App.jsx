@@ -8,7 +8,7 @@ import "./assets/App.css";
 
 function App() {
     // Destrutturo le variabili dal contesto
-    const { movies, series, search, setSearch } = useMoviesContext();
+    const { movies, series, setSearch } = useMoviesContext();
 
     // Uso useRef per gestire il riferimento all'input
     const inputRef = useRef(null);
@@ -20,8 +20,6 @@ function App() {
 
         // Aggiorno la variabile globale
         setSearch(inputRef.current.value);
-
-        alert(inputRef.current.value);
     };
 
     return (
@@ -34,6 +32,14 @@ function App() {
                     </div>
                 </form>
             </header>
+
+            <main>
+                <ul>
+                    {movies.map((movie) => (
+                        <li key={movie}>{movie}</li>
+                    ))}
+                </ul>
+            </main>
         </>
     );
 }

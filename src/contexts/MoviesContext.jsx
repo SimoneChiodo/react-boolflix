@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const apiUrl = import.meta.env.VITE_THEMOVIEDB_API_SEARCH_URL;
 
@@ -8,13 +8,14 @@ const MoviesContext = createContext();
 // Esporto il Provider
 export const MoviesContextProvider = ({ children }) => {
     //Creo le variabili da condividere
-    const [movies, setMovies] = useState(["Test1", "Test2"]);
-    const [series, setSeries] = useState(["Test3", "Test4"]);
+    const [movies, setMovies] = useState([]);
+    const [series, setSeries] = useState([]);
     const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [selectedGenre, setSelectedGenre] = useState("");
 
-    function Search() {
+    useEffect(() => {
+        // Opzioni dell'Header
         const options = {
             method: "GET",
             headers: {
@@ -24,14 +25,14 @@ export const MoviesContextProvider = ({ children }) => {
             },
         };
 
-        fetch(`${apiUrl}movie?query=${search}`, options)
+        fetch(`${apiUrl}/movie?query=${search}`, options)
             .then((res) => res.json())
             .then((json) => console.log(json))
             .catch((err) => console.error(err));
-    }
+    }, [search]);
 
     return (
-        <MoviesContext.Provider value={{ movies, series, search, setSearch }}>
+        <MoviesContext.Provider value={{ movies, series, setSearch }}>
             {children}
         </MoviesContext.Provider>
     );
