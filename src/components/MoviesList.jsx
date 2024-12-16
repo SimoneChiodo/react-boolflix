@@ -13,33 +13,40 @@ export default function MoviesList({ movies }) {
         return (
             <div className="stars-container">
                 {Array.from({ length: newVote }, (_, index) => (
-                    <FontAwesomeIcon className="color-yellow" icon={faStar} />
+                    <FontAwesomeIcon
+                        key={index}
+                        className="color-yellow"
+                        icon={faStar}
+                    />
                 ))}
             </div>
         );
     }
 
     return (
-        <ul>
-            {Array.isArray(movies) &&
-                movies.map((movie) => (
-                    <li key={movie.id}>
+        <div className="container text-center">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3 gy-4">
+                {movies.map((movie) => (
+                    <div className="col" key={movie.id}>
                         <img
-                            src={`${apiMoviesUrl}/w154${movie.poster_path}`}
-                            alt=""
+                            src={`${apiMoviesUrl}/w185${movie.poster_path}`}
+                            alt="movie-image"
                         />
-                        Titolo: {movie.title || movie.name}; Titolo Originale:
-                        {movie.original_title || movie.original_name}; Lingua
-                        originale: {movie.original_language + " "}
-                        <img
-                            src={`${apiFlagsUrl}/us.png`}
-                            alt="country-flag"
-                            width="28"
-                        />
-                        ; Voto:
-                        {voteToStars(movie.vote_average)}
-                    </li>
+                        <div className="description d-none">
+                            Titolo: {movie.title || movie.name}; Titolo
+                            Originale:{" "}
+                            {movie.original_title || movie.original_name};
+                            Lingua originale: {movie.original_language + " "}
+                            <img
+                                src={`${apiFlagsUrl}/us.png`}
+                                alt="country-flag"
+                                width="28"
+                            />
+                            ; Voto: {voteToStars(movie.vote_average)}
+                        </div>
+                    </div>
                 ))}
-        </ul>
+            </div>
+        </div>
     );
 }
