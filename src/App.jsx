@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 
-const apiFlagsUrl = import.meta.env.VITE_COUNTRYFLAGS_API_URL;
-
 // Context Datas
 import { useMoviesContext } from "./contexts/MoviesContext";
+
+// Components
+import MoviesList from "./components/MoviesList.jsx";
 
 // Custom CSS
 import "./assets/App.css";
@@ -36,23 +37,11 @@ function App() {
             </header>
 
             <main>
-                <ul>
-                    {Array.isArray(movies) &&
-                        movies.map((movie) => (
-                            <li key={movie.id}>
-                                Titolo: {movie.title}; Titolo Originale:
-                                {movie.original_title}; Lingua originale:{" "}
-                                {movie.original_language + " "}
-                                <img
-                                    src={`${apiFlagsUrl}/us.png`}
-                                    alt="country-flag"
-                                    width="28"
-                                />
-                                ; Voto:
-                                {movie.vote_average}
-                            </li>
-                        ))}
-                </ul>
+                <h1>FILM:</h1>
+                <MoviesList key="movies-list" movies={movies} />
+
+                <h1>SERIES:</h1>
+                <MoviesList key="series-list" movies={series} />
             </main>
         </>
     );

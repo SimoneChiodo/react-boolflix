@@ -34,6 +34,18 @@ export const MoviesContextProvider = ({ children }) => {
                 }
             })
             .catch((err) => console.error(err));
+
+        //Richiesta API, per cercare le serie
+        fetch(`${apiMoviesUrl}/tv?query=${search}&language=it-IT`, options)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+
+                if (data.results.length > 0) {
+                    setSeries(data.results);
+                }
+            })
+            .catch((err) => console.error(err));
     }, [search]);
 
     return (
