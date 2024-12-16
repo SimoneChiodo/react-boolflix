@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const apiUrl = import.meta.env.VITE_THEMOVIEDB_API_SEARCH_URL;
+const apiMoviesUrl = import.meta.env.VITE_THEMOVIEDB_API_SEARCH_URL;
 
 // Creo il contesto
 const MoviesContext = createContext();
@@ -26,12 +26,10 @@ export const MoviesContextProvider = ({ children }) => {
         };
 
         //Richiesta API, per cercare i film
-        fetch(`${apiUrl}/movie?query=${search}`, options)
+        fetch(`${apiMoviesUrl}/movie?query=${search}&language=it-IT`, options)
             .then((res) => res.json())
             .then((data) => {
                 if (data.results.length > 0) {
-                    console.log(data.results);
-
                     setMovies(data.results);
                 }
             })

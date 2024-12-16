@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 
+const apiFlagsUrl = import.meta.env.VITE_COUNTRYFLAGS_API_URL;
+
 // Context Datas
 import { useMoviesContext } from "./contexts/MoviesContext";
 
@@ -38,9 +40,15 @@ function App() {
                     {Array.isArray(movies) &&
                         movies.map((movie) => (
                             <li key={movie.id}>
-                                Titolo: {movie.title}; Titolo Originale:{" "}
-                                {movie.original_title}; Lingua:{" "}
-                                {movie.original_language}; Voto:{" "}
+                                Titolo: {movie.title}; Titolo Originale:
+                                {movie.original_title}; Lingua originale:{" "}
+                                {movie.original_language + " "}
+                                <img
+                                    src={`${apiFlagsUrl}/us.png`}
+                                    alt="country-flag"
+                                    width="28"
+                                />
+                                ; Voto:
                                 {movie.vote_average}
                             </li>
                         ))}
