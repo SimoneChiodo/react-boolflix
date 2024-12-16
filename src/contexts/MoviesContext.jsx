@@ -39,8 +39,6 @@ export const MoviesContextProvider = ({ children }) => {
         fetch(`${apiMoviesUrl}/tv?query=${search}&language=it-IT`, options)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
-
                 if (data.results.length > 0) {
                     setSeries(data.results);
                 }
