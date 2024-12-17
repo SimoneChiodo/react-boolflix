@@ -33,24 +33,24 @@ export default function ProductionsCard({ production }) {
         <div className="col position-relative" key={production.id}>
             {/* Poster */}
             <img
-                src={`${apiMoviesUrl}/w185${production.poster_path}`}
+                src={`${apiMoviesUrl}/w300${production.poster_path}`}
                 alt={`POSTER - ${production.title}`}
             />
 
             {/* Description */}
-            <ul className="card-description position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center align-items-center px-1">
+            <ul className="card-description position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center align-items-center px-2">
                 <li>
                     <b>Titolo:</b>
                 </li>
-                <li className="pb-2">{production.title}</li>
+                <li className="pb-3">{production.title}</li>
                 <li>
                     <b>Titolo originale:</b>
                 </li>
-                <li className="pb-2">{production.original_title}</li>
+                <li className="pb-3">{production.original_title}</li>
                 <li>
                     <b>Lingua:</b>
                 </li>
-                <li className="pb-2">
+                <li className="pb-3">
                     {
                         <img
                             src={findFlag(production.original_language)}

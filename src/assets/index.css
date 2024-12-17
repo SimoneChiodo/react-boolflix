@@ -29,9 +29,9 @@ ul {
 
 .card-description {
     background-color: rgb(10, 10, 10);
-    width: 187px; /* CARD POSTER WIDTH */
+    width: 302px; /* CARD POSTER WIDTH */
     height: calc(100% + 2px);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     opacity: 0;
 }
 
