@@ -13,7 +13,6 @@ dist-ssr
 *.local
 
 ESERCIZIO
-.env
 
 # Editor directories and files
 .vscode/*
