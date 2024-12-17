@@ -30,7 +30,7 @@ export default function ProductionsCard({ production }) {
     }
 
     return (
-        <div className="col" key={production.id}>
+        <div className="col position-relative" key={production.id}>
             {/* Poster */}
             <img
                 src={`${apiMoviesUrl}/w185${production.poster_path}`}
@@ -38,21 +38,31 @@ export default function ProductionsCard({ production }) {
             />
 
             {/* Description */}
-            <ul className="description">
-                <li>Titolo: {production.title}</li>
+            <ul className="card-description position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center align-items-center px-1">
                 <li>
-                    Titolo Originale:
-                    {production.original_title}
+                    <b>Titolo:</b>
+                </li>
+                <li className="pb-2">{production.title}</li>
+                <li>
+                    <b>Titolo originale:</b>
+                </li>
+                <li className="pb-2">{production.original_title}</li>
+                <li>
+                    <b>Lingua:</b>
+                </li>
+                <li className="pb-2">
+                    {
+                        <img
+                            src={findFlag(production.original_language)}
+                            alt={`${production.original_language.toUpperCase()}-FLAG`}
+                            width="28"
+                        />
+                    }
                 </li>
                 <li>
-                    Lingua originale: {production.original_language + " "}
-                    <img
-                        src={findFlag(production.original_language)}
-                        alt="country-flag"
-                        width="28"
-                    />
+                    <b>Voto:</b>
                 </li>
-                <li>Voto: {voteToStars(production.vote_average)}</li>
+                <li>{voteToStars(production.vote_average)}</li>
             </ul>
         </div>
     );

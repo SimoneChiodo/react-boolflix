@@ -14,8 +14,28 @@ h3 {
     color: rgb(220, 220, 220);
 }
 
+ul {
+    padding: 0;
+    list-style-position: none;
+    list-style-type: none;
+    color: whitesmoke;
+}
+
 /* UTILITIES */
 
 .color-yellow {
     color: gold;
+}
+
+.card-description {
+    background-color: rgb(10, 10, 10);
+    width: 187px; /* CARD POSTER WIDTH */
+    height: calc(100% + 2px);
+    font-size: 0.9rem;
+    opacity: 0;
+}
+
+.card-description:hover {
+    opacity: 100;
+    transition: all 0.5s;
 }
