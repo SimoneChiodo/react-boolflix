@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { useMoviesContext } from "./contexts/MoviesContext";
 
 // Components
-import MoviesList from "./components/MoviesList.jsx";
+import ProductionsList from "./components/ProductionsList.jsx";
 
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -72,7 +72,10 @@ function App() {
                     <div className="film-container py-4">
                         <h2 className="text-center text-light pb-2">FILM:</h2>
                         {movies.length > 0 ? (
-                            <MoviesList key="movies-list" movies={movies} />
+                            <ProductionsList
+                                key="movies-list"
+                                productions={movies}
+                            />
                         ) : (
                             <h3>Nessun risultato trovato...</h3>
                         )}
@@ -81,7 +84,10 @@ function App() {
                     <div className="film-container py-5">
                         <h2 className="text-center text-light pb-2">SERIES:</h2>
                         {series.length > 0 ? (
-                            <MoviesList key="series-list" movies={series} />
+                            <ProductionsList
+                                key="series-list"
+                                productions={series}
+                            />
                         ) : (
                             <h3>Nessun risultato trovato...</h3>
                         )}

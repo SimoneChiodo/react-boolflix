@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const apiMoviesUrl = import.meta.env.VITE_THEMOVIEDB_API_SEARCH_URL;
+const apiMoviesUrl = "https://api.themoviedb.org/3/search";
 
 // Creo il contesto
 const MoviesContext = createContext();
@@ -40,7 +40,16 @@ export const MoviesContextProvider = ({ children }) => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.results.length > 0) {
-                    setSeries(data.results);
+                    const newData = data.results.map((e) => ({
+                        id: e.id,
+                        title: e.name,
+                        original_title: e.original_name,
+                        original_language: e.original_language,
+                        vote_average: e.vote_average,
+                        poster_path: e.poster_path,
+                    }));
+
+                    setSeries(newData);
                 }
             })
             .catch((err) => console.error(err));
