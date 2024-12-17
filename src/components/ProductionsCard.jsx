@@ -1,4 +1,3 @@
-const apiFlagsUrl = "https://flagpedia.net/data/flags/h80";
 const apiMoviesUrl = "https://image.tmdb.org/t/p";
 
 // FontAwesome Icons
@@ -23,13 +22,23 @@ export default function ProductionsCard({ production }) {
         );
     }
 
+    function findFlag(country) {
+        if (country === "en") country = "GB";
+        if (country === "ja") country = "JP";
+
+        return `https://flagsapi.com/${country.toUpperCase()}/shiny/64.png`;
+    }
+
     return (
         <div className="col" key={production.id}>
+            {/* Poster */}
             <img
                 src={`${apiMoviesUrl}/w185${production.poster_path}`}
-                alt="movie-image"
+                alt={`POSTER - ${production.title}`}
             />
-            <ul className="description d-none">
+
+            {/* Description */}
+            <ul className="description">
                 <li>Titolo: {production.title}</li>
                 <li>
                     Titolo Originale:
@@ -38,7 +47,7 @@ export default function ProductionsCard({ production }) {
                 <li>
                     Lingua originale: {production.original_language + " "}
                     <img
-                        src={`${apiFlagsUrl}/us.png`}
+                        src={findFlag(production.original_language)}
                         alt="country-flag"
                         width="28"
                     />
