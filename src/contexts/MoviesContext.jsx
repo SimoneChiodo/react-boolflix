@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const apiMoviesUrl = "https://api.themoviedb.org/3/search";
+const apiMoviesUrl = "https://api.themoviedb.org/3";
 
 // Creo il contesto
 const MoviesContext = createContext();
@@ -14,7 +14,7 @@ export const MoviesContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [selectedGenre, setSelectedGenre] = useState("");
 
-    useEffect(() => {
+    function searchProductions() {
         // Opzioni dell'Header
         const options = {
             method: "GET",
@@ -26,37 +26,93 @@ export const MoviesContextProvider = ({ children }) => {
         };
 
         //Richiesta API, per cercare i film
-        fetch(`${apiMoviesUrl}/movie?query=${search}&language=it-IT`, options)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.results.length > 0) {
-                    setMovies(data.results);
-                }
-            })
-            .catch((err) => console.error(err));
+        selectedGenre === ""
+            ? fetch(
+                  `${apiMoviesUrl}/search/movie?query=${search}&language=it-IT`,
+                  options
+              )
+                  .then((res) => res.json())
+                  .then((data) => {
+                      if (data.results.length > 0) {
+                          setMovies(data.results);
+                      }
+                  })
+                  .catch((err) => console.error(err))
+            : fetch(
+                  `${apiMoviesUrl}/discover/movie?query=${search}&language=it-IT&with_genres=${selectedGenre}`,
+                  options
+              )
+                  .then((res) => res.json())
+                  .then((data) => {
+                      if (data.results.length > 0) {
+                          setMovies(data.results);
+                      }
+                  })
+                  .catch((err) => console.error(err));
 
         //Richiesta API, per cercare le serie
-        fetch(`${apiMoviesUrl}/tv?query=${search}&language=it-IT`, options)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.results.length > 0) {
-                    const newData = data.results.map((e) => ({
-                        id: e.id,
-                        title: e.name,
-                        original_title: e.original_name,
-                        original_language: e.original_language,
-                        vote_average: e.vote_average,
-                        poster_path: e.poster_path,
-                    }));
+        selectedGenre === ""
+            ? fetch(
+                  `${apiMoviesUrl}/search/tv?query=${search}&language=it-IT`,
+                  options
+              )
+                  .then((res) => res.json())
+                  .then((data) => {
+                      if (data.results.length > 0) {
+                          const newData = data.results.map((e) => ({
+                              id: e.id,
+                              title: e.name,
+                              original_title: e.original_name,
+                              original_language: e.original_language,
+                              vote_average: e.vote_average,
+                              poster_path: e.poster_path,
+                              genre_ids: e.genre_ids,
+                          }));
 
-                    setSeries(newData);
-                }
-            })
-            .catch((err) => console.error(err));
+                          setSeries(newData);
+                      }
+                  })
+                  .catch((err) => console.error(err))
+            : fetch(
+                  `${apiMoviesUrl}/discover/tv?query=${search}&language=it-IT&with_genres=${selectedGenre}`,
+                  options
+              )
+                  .then((res) => res.json())
+                  .then((data) => {
+                      if (data.results.length > 0) {
+                          const newData = data.results.map((e) => ({
+                              id: e.id,
+                              title: e.name,
+                              original_title: e.original_name,
+                              original_language: e.original_language,
+                              vote_average: e.vote_average,
+                              poster_path: e.poster_path,
+                              genre_ids: e.genre_ids,
+                          }));
+
+                          setSeries(newData);
+                      }
+                  })
+                  .catch((err) => console.error(err));
+    }
+
+    useEffect(() => {
+        searchProductions();
     }, [search]);
+    useEffect(() => {
+        searchProductions();
+    }, [selectedGenre]);
 
     return (
-        <MoviesContext.Provider value={{ movies, series, setSearch }}>
+        <MoviesContext.Provider
+            value={{
+                movies,
+                series,
+                setSearch,
+                setSelectedGenre,
+                searchProductions,
+            }}
+        >
             {children}
         </MoviesContext.Provider>
     );
