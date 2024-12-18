@@ -67,11 +67,21 @@ export default function Header() {
                                 <option value={10402}>Musical</option>
                                 <option value={9648}>Mistero</option>
                                 <option value={10749}>Romantico</option>
-                                <option value={878}>Science Fiction</option>
+                                <option value={878}>Sci-Fi</option>
                                 <option value={10770}>TV Movie</option>
                                 <option value={53}>Thriller</option>
                                 <option value={10752}>Guerra</option>
                                 <option value={37}>Western</option>
+                                <option value={10759}>
+                                    Azione & Avventura
+                                </option>
+                                <option value={10762}>Per Bambini</option>
+                                <option value={10763}>News</option>
+                                <option value={10764}>Storie Vere</option>
+                                <option value={10765}>Sci-Fi & Fantasy</option>
+                                <option value={10766}>Soap Opera</option>
+                                <option value={10767}>Discussioni</option>
+                                <option value={10768}>Guerra & Politica</option>
                             </select>
                         </div>
 
