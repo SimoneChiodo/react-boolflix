@@ -47,15 +47,10 @@ function App() {
                                 </h2>
 
                                 {/* Sezione - Body */}
-                                {movies.length > 0 ? (
-                                    <ProductionsList
-                                        key="movies-list"
-                                        productions={movies}
-                                    />
-                                ) : (
-                                    // Nel caso non ci fossero film, ma solo serie
-                                    <h3>Nessun risultato trovato...</h3>
-                                )}
+                                <ProductionsList
+                                    key="movies-list"
+                                    productions={movies}
+                                />
                             </div>
 
                             {/* Stampo le serie */}
@@ -66,15 +61,10 @@ function App() {
                                 </h2>
 
                                 {/* Sezione - Body */}
-                                {series.length > 0 ? (
-                                    <ProductionsList
-                                        key="series-list"
-                                        productions={series}
-                                    />
-                                ) : (
-                                    // Nel caso non ci fossero serie, ma solo film
-                                    <h3>Nessun risultato trovato...</h3>
-                                )}
+                                <ProductionsList
+                                    key="series-list"
+                                    productions={series}
+                                />
                             </div>
                         </div>
                     ) : (

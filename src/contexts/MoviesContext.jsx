@@ -11,7 +11,6 @@ export const MoviesContextProvider = ({ children }) => {
     const [movies, setMovies] = useState([]);
     const [series, setSeries] = useState([]);
     const [search, setSearch] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const [selectedGenre, setSelectedGenre] = useState(-1);
 
     const dataToExport = {

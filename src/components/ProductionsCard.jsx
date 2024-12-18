@@ -1,5 +1,8 @@
 const apiMoviesUrl = "https://image.tmdb.org/t/p";
 
+// Context Datas
+import { useMoviesContext } from "../contexts/MoviesContext";
+
 // FontAwesome Icons
 import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
