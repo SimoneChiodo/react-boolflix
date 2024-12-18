@@ -47,10 +47,19 @@ export default function ProductionsCard({ production }) {
             if (genres[i] === 10402) output += "Musical";
             if (genres[i] === 9648) output += "Mistero";
             if (genres[i] === 10749) output += "Romantico";
-            if (genres[i] === 878) output += "Science Fiction";
+            if (genres[i] === 878) output += "Sci-Fi";
             if (genres[i] === 10770) output += "TV Movie";
             if (genres[i] === 53) output += "Thriller";
             if (genres[i] === 10752) output += "Guerra";
+            if (genres[i] === 37) output += "Western";
+            if (genres[i] === 10759) output += "Azione & Avventura";
+            if (genres[i] === 10762) output += "Per Bambini";
+            if (genres[i] === 10763) output += "News";
+            if (genres[i] === 10764) output += "Storie Vere";
+            if (genres[i] === 10765) output += "Sci-Fi & Fantasy";
+            if (genres[i] === 10766) output += "Soap Opera";
+            if (genres[i] === 10767) output += "Discussioni";
+            if (genres[i] === 10768) output += "Guerra & Politica";
             if (genres[i] === 37) output += "Western";
 
             if (i + 1 !== genres.length) output += ", ";
@@ -62,10 +71,12 @@ export default function ProductionsCard({ production }) {
     return (
         <div className="col position-relative" key={production.id}>
             {/* Poster */}
-            <img
-                src={`${apiMoviesUrl}/w300${production.poster_path}`}
-                alt={`POSTER - ${production.title}`}
-            />
+            <div className="card-image d-flex justify-content-center align-items-center">
+                <img
+                    src={`${apiMoviesUrl}/w300${production.poster_path}`}
+                    alt={`POSTER - ${production.title}`}
+                />
+            </div>
 
             {/* Description */}
             <ul className="card-description position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center align-items-center px-2">
@@ -80,7 +91,13 @@ export default function ProductionsCard({ production }) {
                 <li>
                     <b>Generi:</b>
                 </li>
-                <li className="pb-3">{translateGenre(production.genre_ids)}</li>
+                <li className="pb-3">
+                    {production.genre_ids.length > 0 ? (
+                        translateGenre(production.genre_ids)
+                    ) : (
+                        <i className="text-small">nessuno</i>
+                    )}
+                </li>
                 <li>
                     <b>Lingua:</b>
                 </li>
@@ -96,7 +113,13 @@ export default function ProductionsCard({ production }) {
                 <li>
                     <b>Voto:</b>
                 </li>
-                <li>{voteToStars(production.vote_average)}</li>
+                <li>
+                    {production.genre_ids.length > 0 ? (
+                        voteToStars(production.vote_average)
+                    ) : (
+                        <i className="text-small">nessuno</i>
+                    )}
+                </li>
             </ul>
         </div>
     );

@@ -27,6 +27,16 @@ ul {
     color: gold;
 }
 
+.text-small {
+    font-size: 0.9rem;
+}
+
+/* UTILITIES --- PRODUCTION CARD */
+.card-image {
+    width: 100%;
+    height: 100%;
+}
+
 .card-description {
     background-color: rgb(10, 10, 10);
     width: 302px; /* CARD POSTER WIDTH */
