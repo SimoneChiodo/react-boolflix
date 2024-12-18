@@ -23,12 +23,24 @@ ul {
 
 /* UTILITIES */
 
+.h-100hv {
+    height: 100vh;
+}
+
+.text-full-screen {
+    font-size: 2.9rem;
+}
+
 .color-yellow {
     color: gold;
 }
 
 .text-small {
     font-size: 0.9rem;
+}
+
+.no-text-wrap {
+    white-space: nowrap;
 }
 
 /* UTILITIES --- PRODUCTION CARD */

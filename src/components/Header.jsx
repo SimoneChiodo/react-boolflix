@@ -42,9 +42,9 @@ export default function Header() {
                             {/* Dropdown Genre */}
                             <label
                                 htmlFor="genreDropdown"
-                                className="form-label text-light m-0 pe-2"
+                                className="form-label text-light m-0 pe-3 no-text-wrap"
                             >
-                                Genere:
+                                Filtra per genere:
                             </label>
                             <select
                                 id="genreDropdown"
@@ -86,14 +86,15 @@ export default function Header() {
                         </div>
 
                         {/* Searchbar */}
-                        <form onSubmit={handleSearchbarSubmit}>
+                        <form className="ms-3" onSubmit={handleSearchbarSubmit}>
                             <div>
                                 <input
                                     className="me-2"
                                     type="text"
                                     ref={inputRef}
+                                    placeholder="cerca un film o serie..."
                                 />
-                                <input type="submit" value="Search" />
+                                <input type="submit" value="Cerca" />
                             </div>
                         </form>
                     </div>
