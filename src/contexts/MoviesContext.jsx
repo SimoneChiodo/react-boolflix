@@ -12,7 +12,15 @@ export const MoviesContextProvider = ({ children }) => {
     const [series, setSeries] = useState([]);
     const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedGenre, setSelectedGenre] = useState("");
+    const [selectedGenre, setSelectedGenre] = useState(-1);
+
+    const dataToExport = {
+        movies,
+        series,
+        selectedGenre,
+        setSearch,
+        setSelectedGenre,
+    };
 
     function searchProductions() {
         // Opzioni dell'Header
@@ -26,74 +34,40 @@ export const MoviesContextProvider = ({ children }) => {
         };
 
         //Richiesta API, per cercare i film
-        selectedGenre === ""
-            ? fetch(
-                  `${apiMoviesUrl}/search/movie?query=${search}&language=it-IT`,
-                  options
-              )
-                  .then((res) => res.json())
-                  .then((data) => {
-                      if (data.results.length > 0) {
-                          setMovies(data.results);
-                      }
-                  })
-                  .catch((err) => console.error(err))
-            : fetch(
-                  `${apiMoviesUrl}/discover/movie?query=${search}&language=it-IT&with_genres=${selectedGenre}`,
-                  options
-              )
-                  .then((res) => res.json())
-                  .then((data) => {
-                      if (data.results.length > 0) {
-                          setMovies(data.results);
-                      }
-                  })
-                  .catch((err) => console.error(err));
+        fetch(
+            `${apiMoviesUrl}/search/movie?query=${search}&language=it-IT`,
+            options
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.results.length > 0) {
+                    setMovies(data.results);
+                }
+            })
+            .catch((err) => console.error(err));
 
         //Richiesta API, per cercare le serie
-        selectedGenre === ""
-            ? fetch(
-                  `${apiMoviesUrl}/search/tv?query=${search}&language=it-IT`,
-                  options
-              )
-                  .then((res) => res.json())
-                  .then((data) => {
-                      if (data.results.length > 0) {
-                          const newData = data.results.map((e) => ({
-                              id: e.id,
-                              title: e.name,
-                              original_title: e.original_name,
-                              original_language: e.original_language,
-                              vote_average: e.vote_average,
-                              poster_path: e.poster_path,
-                              genre_ids: e.genre_ids,
-                          }));
+        fetch(
+            `${apiMoviesUrl}/search/tv?query=${search}&language=it-IT`,
+            options
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.results.length > 0) {
+                    const newData = data.results.map((e) => ({
+                        id: e.id,
+                        title: e.name,
+                        original_title: e.original_name,
+                        original_language: e.original_language,
+                        vote_average: e.vote_average,
+                        poster_path: e.poster_path,
+                        genre_ids: e.genre_ids,
+                    }));
 
-                          setSeries(newData);
-                      }
-                  })
-                  .catch((err) => console.error(err))
-            : fetch(
-                  `${apiMoviesUrl}/discover/tv?query=${search}&language=it-IT&with_genres=${selectedGenre}`,
-                  options
-              )
-                  .then((res) => res.json())
-                  .then((data) => {
-                      if (data.results.length > 0) {
-                          const newData = data.results.map((e) => ({
-                              id: e.id,
-                              title: e.name,
-                              original_title: e.original_name,
-                              original_language: e.original_language,
-                              vote_average: e.vote_average,
-                              poster_path: e.poster_path,
-                              genre_ids: e.genre_ids,
-                          }));
-
-                          setSeries(newData);
-                      }
-                  })
-                  .catch((err) => console.error(err));
+                    setSeries(newData);
+                }
+            })
+            .catch((err) => console.error(err));
     }
 
     useEffect(() => {
@@ -104,15 +78,7 @@ export const MoviesContextProvider = ({ children }) => {
     }, [selectedGenre]);
 
     return (
-        <MoviesContext.Provider
-            value={{
-                movies,
-                series,
-                setSearch,
-                setSelectedGenre,
-                searchProductions,
-            }}
-        >
+        <MoviesContext.Provider value={dataToExport}>
             {children}
         </MoviesContext.Provider>
     );

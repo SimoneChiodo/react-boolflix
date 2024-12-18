@@ -15,7 +15,7 @@ import * as bootstrap from "bootstrap";
 
 function App() {
     // Destrutturo le variabili dal contesto
-    const { movies, series, setSearch, setSelectedGenre } = useMoviesContext();
+    const { movies, series } = useMoviesContext();
 
     return (
         <>

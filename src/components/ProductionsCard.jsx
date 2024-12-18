@@ -80,10 +80,7 @@ export default function ProductionsCard({ production }) {
                 <li>
                     <b>Generi:</b>
                 </li>
-                <li className="pb-3">
-                    {console.log(production)}
-                    {translateGenre(production.genre_ids)}
-                </li>
+                <li className="pb-3">{translateGenre(production.genre_ids)}</li>
                 <li>
                     <b>Lingua:</b>
                 </li>

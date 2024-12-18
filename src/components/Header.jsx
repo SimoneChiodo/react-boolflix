@@ -1,5 +1,6 @@
-// Context Datas
 import { useRef } from "react";
+
+// Context Datas
 import { useMoviesContext } from "../contexts/MoviesContext";
 
 export default function Header() {
@@ -51,26 +52,26 @@ export default function Header() {
                                 defaultValue=""
                                 onChange={handleGenreChange}
                             >
-                                <option value="">...</option>
-                                <option value="28">Azione</option>
-                                <option value="12">Avventura</option>
-                                <option value="16">Animazione</option>
-                                <option value="35">Commedia</option>
-                                <option value="80">Crimine</option>
-                                <option value="99">Documentario</option>
-                                <option value="18">Drammatico</option>
-                                <option value="10751">Per Famiglie</option>
-                                <option value="14">Fantasy</option>
-                                <option value="36">Storico</option>
-                                <option value="27">Horror</option>
-                                <option value="10402">Musical</option>
-                                <option value="9648">Mistero</option>
-                                <option value="10749">Romantico</option>
-                                <option value="878">Science Fiction</option>
-                                <option value="10770">TV Movie</option>
-                                <option value="53">Thriller</option>
-                                <option value="10752">Guerra</option>
-                                <option value="37">Western</option>
+                                <option value={-1}>...</option>
+                                <option value={28}>Azione</option>
+                                <option value={12}>Avventura</option>
+                                <option value={16}>Animazione</option>
+                                <option value={35}>Commedia</option>
+                                <option value={80}>Crimine</option>
+                                <option value={99}>Documentario</option>
+                                <option value={18}>Drammatico</option>
+                                <option value={10751}>Per Famiglie</option>
+                                <option value={14}>Fantasy</option>
+                                <option value={36}>Storico</option>
+                                <option value={27}>Horror</option>
+                                <option value={10402}>Musical</option>
+                                <option value={9648}>Mistero</option>
+                                <option value={10749}>Romantico</option>
+                                <option value={878}>Science Fiction</option>
+                                <option value={10770}>TV Movie</option>
+                                <option value={53}>Thriller</option>
+                                <option value={10752}>Guerra</option>
+                                <option value={37}>Western</option>
                             </select>
                         </div>
 
